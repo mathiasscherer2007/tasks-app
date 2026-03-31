@@ -17,7 +17,7 @@ export function getTodos(userid: string) {
 	return db.get(userid);
 }
 
-export function createTodo(userid: string, description: string) {
+export function createTodo(userid: string, description: string | FormDataEntryValue) {
     if (description === '') {
         throw new Error('todos must have a description');
     }
@@ -35,7 +35,7 @@ export function createTodo(userid: string, description: string) {
     })
 }
 
-export function deleteTodo(userid: string, todoid: string) {
+export function deleteTodo(userid: string, todoid: string | FormDataEntryValue) {
     const todos = db.get(userid);
     const index = todos.findIndex((todo: Todo) => todo.id = todoid)
 
@@ -44,4 +44,5 @@ export function deleteTodo(userid: string, todoid: string) {
     }
 }
 
-// TODO: edit tasks.
+// TODO: edit todos.
+// TODO: add subtasks to todos.

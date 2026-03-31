@@ -1,5 +1,5 @@
 export interface Todo {
-	id: string;
-	description: string;
+	id: string | FormDataEntryValue;
+	description: string | FormDataEntryValue;
 	done: boolean;
 }
