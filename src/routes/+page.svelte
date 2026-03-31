@@ -4,7 +4,7 @@
 	let { data, form } = $props();
 </script>
 
-<div>
+<div class="centered">
 	<h1>TODOS</h1>
 	<form method="POST" action="?/create" use:enhance>
 		<input
@@ -29,3 +29,11 @@
 		{/each}
 	</ul>
 </div>
+
+<style>
+    .centered{
+        height: 100vh;
+        width: fit-content;
+        margin: 0 auto;
+    }
+</style>
