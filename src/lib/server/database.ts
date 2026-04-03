@@ -54,18 +54,19 @@ export function deleteTodo(userid: string, todoid: FormDataEntryValue) {
 export function editTodo(
 	userid: string,
 	todoid: FormDataEntryValue,
-	description: FormDataEntryValue
+	newDescription: FormDataEntryValue
 ) {
-	if (description === '') {
+	if (newDescription === '') {
 		throw new Error("new description can't be empty");
 	}
 
 	const todos = db.get(userid);
 	const index = todos.findIndex((todo: Todo) => todo.id === todoid);
 
-	checkDuplicateDescription(todos, description);
+	checkDuplicateDescription(todos, newDescription);
 
-	todos[index].description = description;
+	todos[index].description = newDescription;
 }
 
 // TODO: add subtasks to todos.
+// TODO: pin TODOS so they appear on top of the list.
