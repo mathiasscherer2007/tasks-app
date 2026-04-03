@@ -25,13 +25,13 @@
 			<button class="rounded px-4 bg-indigo-600 text-white cursor-pointer hover:bg-indigo-500 transition">Add</button>
 		</form>
 
-		<ul class="dark:text-white w-full my-5 flex flex-col gap-2 p-2">
+		<ul class="dark:text-white w-full my-5 flex flex-col gap-2">
 			{#if data.todos.length > 0}
 				{#each data.todos as todo (todo.id)}
 					<TodoListItem description={todo.description} id={todo.id} createdAt={todo.createdAt} />
 				{/each}
 			{:else}
-				<li class="text-gray-500 italic">no data do display :(</li>
+				<li class="dark:text-gray-300 text-gray-500 italic">no data do display :(</li>
 			{/if}
 		</ul>
 	</div>
