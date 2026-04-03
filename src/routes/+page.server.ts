@@ -19,7 +19,7 @@ export const actions = {
 		const data = await request.formData();
 
 		try {
-			db.createTodo(cookies.get('userid') ?? '', data.get('description') ?? '');
+			db.createTodo(cookies.get('userid') ?? '', data.get('description')?.toString() ?? '');
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				return fail(422, {
@@ -32,14 +32,14 @@ export const actions = {
 
 	delete: async ({ cookies, request }) => {
 		const data = await request.formData();
-		db.deleteTodo(cookies.get('userid') ?? '', data.get('id') ?? '-1');
+		db.deleteTodo(cookies.get('userid') ?? '', data.get('id')?.toString() ?? '');
 	},
 
 	edit: async ({ cookies, request }) => {
 		const data = await request.formData();
 
 		try {
-			db.editTodo(cookies.get('userid') ?? '', data.get('id') ?? '', data.get('description') ?? '');
+			db.editTodo(cookies.get('userid') ?? '', data.get('id')?.toString() ?? '', data.get('description')?.toString() ?? '');
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				return fail(422, {
@@ -48,5 +48,10 @@ export const actions = {
 				});
 			}
 		}
+	},
+
+	toggleDone: async ({ cookies, request }) => {
+		const data = await request.formData();
+		db.toggleDone(cookies.get('userid') ?? '', data.get('id')?.toString() ?? '');
 	}
 };
