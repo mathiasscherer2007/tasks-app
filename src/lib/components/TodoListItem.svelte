@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { formatDate } from '$lib/utils/formatDate';
+	import { fly, slide } from "svelte/transition";
 
 	const { description, id, createdAt } = $props();
 
@@ -11,7 +12,7 @@
 	}
 </script>
 
-<li class="dark:bg-slate-700 bg-gray-200 p-2 px-3 rounded">
+<li in:fly|global={{ duration: 500 }} out:slide|global={{ duration: 500, axis:'y' }} class="dark:bg-slate-700 bg-gray-200 p-2 px-3 rounded my-1">
 	{#if editing}
 		<form
 			method="POST"
@@ -28,7 +29,7 @@
 			<div class="flex-1 flex">
 				<input class="text-lg font-semibold p-3 border flex-1 rounded" value={description} name="description" autocomplete="off" type="text" required />
 			</div>
-			<div class="w-1/5 grid grid-cols-2 gap-2">
+			<div class="max-w-1/5 min-w-44 grid grid-cols-2 gap-2 flex-1">
 				<button class="border cursor-pointer bg-emerald-400 dark:bg-emerald-500 rounded p-3 py-4 hover:bg-emerald-500 dark:hover:bg-emerald-600 transition" aria-label="submit edit">Apply</button>
 				<button
 					onclick={editTask}
@@ -45,7 +46,7 @@
 				<div class="text-lg font-semibold">{description}</div>
 				<div class="italic text-sm my-auto text-gray-600 dark:text-gray-300">Created at: {formatDate(createdAt)}</div>
 			</div>
-			<div class="w-1/5 grid grid-cols-2 gap-2">
+			<div class="max-w-1/5 min-w-44 grid grid-cols-2 gap-2 flex-1">
 				<button
 					onclick={editTask}
 					type="button"
