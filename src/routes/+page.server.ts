@@ -32,7 +32,6 @@ export const actions = {
 
 	delete: async ({ cookies, request }) => {
 		const data = await request.formData();
-		console.log(data.get('id'))
 		db.deleteTodo(cookies.get('userid') ?? '', data.get('id') ?? '-1')
 	}
 };

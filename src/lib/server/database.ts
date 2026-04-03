@@ -36,8 +36,6 @@ export function createTodo(userid: string, description: string | FormDataEntryVa
 		done: false,
 		createdAt: Date(),
 	});
-
-	console.log(todos);
 }
 
 export function deleteTodo(userid: string, todoid: FormDataEntryValue) {
