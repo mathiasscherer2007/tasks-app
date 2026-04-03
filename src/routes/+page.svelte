@@ -32,7 +32,7 @@
 					<TodoListItem description={todo.description} id={todo.id} done={todo.done} createdAt={todo.createdAt} />
 				{/each}
 			{:else}
-				<li in:fly={{ duration: 500, delay: 200 }} class="dark:text-gray-300 text-gray-500 italic">no data do display :(</li>
+				<li in:fly={{ duration: 500, delay: 200 }} class="dark:text-gray-300 text-gray-500 italic">no data to display :(</li>
 			{/if}
 		</ul>
 	</div>
