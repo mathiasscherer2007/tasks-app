@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { formatDate } from '$lib/utils/formatDate';
+	import TodoListItem from '$lib/components/TodoListItem.svelte';
 
 	let { data, form } = $props();
+
+	
 </script>
 
 {#if form?.error}
@@ -26,14 +28,7 @@
 	<ul>
 		{#if data.todos.length > 0}
 			{#each data.todos as todo (todo.id)}
-				<li>
-					<form method="POST" action="?/delete" use:enhance>
-						<input type="hidden" name="id" value={todo.id} />
-						<span><b>{todo.description}</b></span>
-						<span>Created at: {formatDate(todo.createdAt)}</span>
-						<button class="border px-2" aria-label="mark as complete">X</button>
-					</form>
-				</li>
+				<TodoListItem description={todo.description} id={todo.id} createdAt={todo.createdAt} />
 			{/each}
 		{:else}
 			<li>no data do display</li>
