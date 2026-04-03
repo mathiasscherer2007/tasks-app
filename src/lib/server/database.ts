@@ -10,7 +10,8 @@ export function getTodos(userid: string) {
 			{
 				id: crypto.randomUUID(),
 				description: 'Welcome!',
-				done: false
+				done: false,
+				createdAt: Date(),
 			}
 		]);
 	}
@@ -32,7 +33,8 @@ export function createTodo(userid: string, description: string | FormDataEntryVa
 	todos.push({
 		id: crypto.randomUUID(),
 		description: description,
-		done: false
+		done: false,
+		createdAt: Date(),
 	});
 
 	console.log(todos);
