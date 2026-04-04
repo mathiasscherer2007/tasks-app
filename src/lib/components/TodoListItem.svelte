@@ -61,8 +61,8 @@
 			use:enhance
 		>
 			<input type="hidden" name="id" value={id} />
-			<div class="grid grid-rows-2 flex-1">
-				<div class="text-lg font-semibold {done ? 'line-through' : ''}">
+			<div class="grid grid-rows-2 flex-1 mr-5">
+				<div class="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-semibold {done ? 'line-through' : ''}">
 					{description}
 				</div>
 				<div
