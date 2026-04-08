@@ -3,10 +3,17 @@ import type { Todo } from './types/todo';
 // Simulates a database
 const db = new Map();
 
-function checkDuplicateDescription(todos: Array<Todo>, description: string) {
-	if (todos.find((todo: Todo) => todo.description === description)) {
-		throw new Error('todos must be unique');
-	}
+function checkDuplicateDescription(todos: Array<Todo>, description: string, todoid?: string) {
+	todos.find((todo: Todo) => {
+		if (todo.description === description) {
+			if (todoid) {
+				if (todo.id === todoid) {
+					return;
+				}
+			}
+			throw new Error('todos must be unique');
+		}
+	});
 }
 
 export function getTodos(userid: string) {
@@ -52,11 +59,7 @@ export function deleteTodo(userid: string, todoid: string) {
 	}
 }
 
-export function editTodo(
-	userid: string,
-	todoid: string,
-	newDescription: string
-) {
+export function editTodo(userid: string, todoid: string, newDescription: string) {
 	if (newDescription === '') {
 		throw new Error("new description can't be empty");
 	}
@@ -64,7 +67,7 @@ export function editTodo(
 	const todos = db.get(userid);
 	const index = todos.findIndex((todo: Todo) => todo.id === todoid);
 
-	checkDuplicateDescription(todos, newDescription);
+	checkDuplicateDescription(todos, newDescription, todoid);
 
 	todos[index].description = newDescription;
 }
@@ -75,5 +78,4 @@ export function toggleDone(userid: string, todoid: string) {
 	todos[index].done = !todos[index].done;
 }
 
-// TODO: mark TODO as done.
 // TODO: pin TODOS so they appear on top of the list.
